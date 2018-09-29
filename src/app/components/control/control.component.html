@@ -1,0 +1,5 @@
+<div *ngFor="let player of players">
+  {{player.aka}}: {{player.score}}
+</div>
+
+<button type="button" (click)="scoreUpdate()">Update</button>
