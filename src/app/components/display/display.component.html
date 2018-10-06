@@ -1,3 +1,15 @@
-<div *ngFor="let player of players">
-  {{player.aka}}: {{player.score}}
+<div class="container">
+  <div class="headpic">
+    <img src="../../assets/showoff-image.png"/>
+  </div>
+
+
+
+<mat-grid-list cols="4" rowHeight="2:1">
+  <mat-grid-tile class="cols" *ngFor="let player of players">
+    "{{player.aka}}"<br />
+    {{player.score}}
+  </mat-grid-tile>
+</mat-grid-list>
+
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlayersService, Player } from '../../services/players.service';
 import { Subscription } from 'rxjs';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @Component({
   selector: 'app-display',

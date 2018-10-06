@@ -11,6 +11,10 @@ import { PlayersService } from './services/players.service';
 import { DisplayComponent } from './components/display/display.component';
 import { ControlComponent } from './components/control/control.component';
 
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {MatGridListModule} from '@angular/material';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,8 +22,11 @@ import { ControlComponent } from './components/control/control.component';
     ControlComponent
   ],
   imports: [
+    APP_ROUTING,
+    BrowserAnimationsModule,
     BrowserModule,
-    APP_ROUTING
+    MatGridListModule,
+    NoopAnimationsModule
   ],
   providers: [
     PlayersService
