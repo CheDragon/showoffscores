@@ -78,7 +78,7 @@ router.route('/players/delete/:id').get((req, res) => {
 });
 
 
-app.get('/*', function(req,res) {
+app.get('/', function(req,res) {
   res.sendFile(path.join(__dirname,'/dist/showoff/index.html'));
 });
 
