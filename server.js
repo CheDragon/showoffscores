@@ -20,10 +20,10 @@ app.use(express.static('./dist/showoff'));
 
 
 router.route('/players/add').post((req, res) => {
-    let issue = new Issue(req.body);
-    issue.save()
-        .then(issue => {
-            res.status(200).json({'issue': 'Added successfully'});
+    let player = new Player(req.body);
+    player.save()
+        .then(player => {
+            res.status(200).json({'player': 'Added successfully'});
         })
         .catch(err => {
             res.status(400).send('Failed to create new record');
@@ -31,16 +31,16 @@ router.route('/players/add').post((req, res) => {
 });
 
 router.route('/players').get((req, res) => {
-    Issue.find((err, issues) => {
+    Player.find((err, player) => {
         if (err)
             console.log(err);
         else
-            res.json(issues);
+            res.json(player);
     });
 });
 
 router.route('/players/:id').get((req, res) => {
-    Issue.findById(req.params.id, (err, issue) => {
+    Player.findById(req.params.id, (err, player) => {
         if (err)
             console.log(err);
         else
@@ -49,17 +49,17 @@ router.route('/players/:id').get((req, res) => {
 });
 
 router.route('/players/update/:id').post((req, res) => {
-    Issue.findById(req.params.id, (err, issue) => {
-        if (!issue)
+    Player.findById(req.params.id, (err, player) => {
+        if (!player)
             return next(new Error('Could not load Document'));
         else {
-            issue.id = req.body.id;
-            issue.firstName = req.body.firstName;
-            issue.lastName = req.body.lastName;
-            issue.aka = req.body.aka;
-            issue.score = req.body.score;
+            player.id = req.body.id;
+            player.firstName = req.body.firstName;
+            player.lastName = req.body.lastName;
+            player.aka = req.body.aka;
+            player.score = req.body.score;
 
-            issue.save().then(issue => {
+            player.save().then(player => {
                 res.json('Update done');
             }).catch(err => {
                 res.status(400).send('Update failed');
@@ -69,7 +69,7 @@ router.route('/players/update/:id').post((req, res) => {
 });
 
 router.route('/players/delete/:id').get((req, res) => {
-    Issue.findByIdAndRemove({_id: req.params.id}, (err, issue) => {
+    Player.findByIdAndRemove({_id: req.params.id}, (err, issue) => {
         if (err)
             res.json(err);
         else
