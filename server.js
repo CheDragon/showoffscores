@@ -69,7 +69,7 @@ router.route('/players/update/:id').post((req, res) => {
 });
 
 router.route('/players/delete/:id').get((req, res) => {
-    Player.findByIdAndRemove({_id: req.params.id}, (err, issue) => {
+    Player.findByIdAndRemove({_id: req.params.id}, (err, player) => {
         if (err)
             res.json(err);
         else
