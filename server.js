@@ -19,8 +19,8 @@ const connection = mongoose.connection;
 app.use(express.static('./dist/showoff'));
 
 
-router.route('/players/add').post((req, res) => {
-    let player = new Player(req.body);
+app.route('/players/add').post((req, res) => {
+    let Player = new Player(req.body);
     player.save()
         .then(player => {
             res.status(200).json({'player': 'Added successfully'});
@@ -30,25 +30,25 @@ router.route('/players/add').post((req, res) => {
         });
 });
 
-router.route('/players').get((req, res) => {
-    Player.find((err, player) => {
+app.route('/players').get((req, res) => {
+    Player.find((err, players) => {
         if (err)
             console.log(err);
         else
-            res.json(player);
+            res.json(players);
     });
 });
 
-router.route('/players/:id').get((req, res) => {
+app.route('/players/:id').get((req, res) => {
     Player.findById(req.params.id, (err, player) => {
         if (err)
             console.log(err);
         else
-            res.json(issue);
+            res.json(player);
     })
 });
 
-router.route('/players/update/:id').post((req, res) => {
+app.route('/players/update/:id').post((req, res) => {
     Player.findById(req.params.id, (err, player) => {
         if (!player)
             return next(new Error('Could not load Document'));
@@ -68,7 +68,7 @@ router.route('/players/update/:id').post((req, res) => {
     });
 });
 
-router.route('/players/delete/:id').get((req, res) => {
+app.route('/players/delete/:id').get((req, res) => {
     Player.findByIdAndRemove({_id: req.params.id}, (err, player) => {
         if (err)
             res.json(err);
